@@ -2,6 +2,8 @@
 
 This repository contains data for a poster created for the Norwich Cancer Research Network event on 5th June 2023
 
+You can access a PDF version of the poster here - [gihawi_ncrn2023.pdf](gihawi_ncrn2023.pdf)
+
 # Poster Production
 
 This [poster](gel_summit_2022.pdf) was created using the [posterdown](https://cran.r-project.org/web/packages/posterdown/index.html) package. To run, render the `Posterdown.Rmd` file. The output will be in html format. A PDF version is also provided in this repo.
