@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Posterdown.knit</title>
+
+
+
+
+
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Arial' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Arial' rel='stylesheet'>
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 841mm;
+height: 1189mm;
+text-align: justify;
+font-size: 45px;
+line-height: 1.05;
+}
+/* RMarkdown Class Styles */
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+margin: auto;
+margin-top: 1em;
+margin-bottom: 1em;
+/* align-items: center; */
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+background-color: #43384d24;
+color: #6C5B7B;
+padding: 1.2mm;
+line-height: 1;
+border-radius: 2mm;
+}
+caption {
+margin-bottom: 10px;
+font-size: 20pt;
+font-style: italic;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #43384d20;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+  border-spacing: 0;
+  font-size: 40%;
+  border-style: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 1em;
+  padding-left: 1em;
+  line-height: 1em;
+}
+table {
+  margin: auto;
+}
+th {
+  padding-left: 5mm;
+  padding-right: 5mm;
+}
+.caption {
+font-size: 20pt;
+font-style: italic;
+padding-top: 0;
+}
+.references {
+font-size: 18px;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+float: left;
+padding: 0px;
+}
+.outer {
+width: 841mm;
+height: calc(1189mm *  (1 - 9.0e-2 - 8.4e-2 - 0.01) );
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+column-gap: 0;
+padding-left: 0cm;
+padding-right: 0cm;
+/* -webkit-column-rule-width: 50%;
+-moz-column-rule-width: 50%;
+column-rule-width: 50%; */
+-webkit-column-rule-style: none;
+-moz-column-rule-style: none;
+column-rule-style: none;
+-webkit-column-rule-color: black;
+-moz-column-rule-color: black;
+column-rule-color: black;
+background-color: #ffffff;
+font-family: Arial;
+margin-top: calc(1189mm *  9.0e-2 );
+padding-top: 1em;
+padding-bottom: 1em;
+}
+span.citation {
+  color: #43384d;
+  font-weight: bold;
+}
+a {
+text-decoration: none;
+color: #43384d;
+}
+#title {
+font-size: 125pt;
+text-align: left;
+margin: 0;
+line-height: 98%;
+border-bottom: 0;
+font-weight: normal;
+background: 0;
+}
+#author {
+color: #6C5B7B;
+margin: 0;
+line-height: 85%;
+font-size: 1.17em;
+}
+#affiliation {
+padding-top: 0.1em;
+color: ;
+font-style: italic;
+font-size: 20px;
+margin: 0;
+}
+sup {
+color: #C06C84;
+}
+.affiliation sup {
+font-size: 20px;
+}
+.author {
+text-align: left;
+}
+.author sup {
+font-size: 30px;
+}
+.author_extra {
+color: #43384d;
+margin: 0;
+line-height: 85%;
+font-size: 30px;
+text-align: left;
+}
+.outer h1, h2, h3, h4, h5, h6 {
+text-align: center;
+margin: 0;
+font-weight: bold;
+}
+.section h1 {
+  text-align:center;
+  padding-bottom:5px;
+  background:
+    linear-gradient(
+      to left,
+      #ffffff 1%,
+      #ffffff 20%,
+      #6C5B7B75 33%,
+      #6C5B7B 50%,
+      #6C5B7B75 66%,
+      #ffffff 80%,
+      #ffffff 99%
+    )
+    left
+    bottom
+    #ffffff
+    no-repeat;
+  background-size:100% 5px ;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.outer h2 {
+text-align: center;
+}
+.outer p, .level2 {
+color: #000000;
+}
+.outer ol {
+padding-left: 8%;
+padding-right: 8%;
+text-align: left;
+}
+.main {
+width: 841mm;
+height: calc(1189mm * 9.0e-2);
+position: absolute;
+background-color: #6C5B7B;
+color: #ffffff90;
+font-family: Arial;
+background-image: linear-gradient(#6C5B7B 50%,#43384d);
+}
+.main strong {
+color: #ffffff;
+}
+.main strong > sup {
+color: #ffffff;
+}
+.main sup {
+color: #ffffff90;
+}
+#main-img-left {
+width: 10%;
+left: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+#main-img-center {
+width: 10%;
+left: calc(841mm * 0.45);
+bottom: 0.5in;
+position: absolute;
+}
+#main-img-right {
+width: 10%;
+right: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+.main p {
+font-size: 130px;
+font-family: Arial;
+text-align: center;
+margin: 0;
+position: absolute;
+top: 50%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+margin-left: 1em;
+}
+.fab {
+color: #00000030;
+font-size: 25px;
+}
+.twitter, i {
+color: #00000030;
+font-size: 35px;
+text-decoration: none;
+}
+a.email {
+text-decoration: none;
+color: #00000030;
+font-size: 35px;
+}
+.envelope {
+color: #00000030;
+font-size: 5px;
+text-decoration: none;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.main_bottom {
+width: 841mm;
+height: calc(1189mm * 8.4e-2);
+margin-top: calc(1189mm * (1 - 8.4e-2));
+position: absolute;
+background-color: #6C5B7B;
+background-image: linear-gradient(#43384d 10%, #6C5B7B);
+}
+.section {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+span > #tab:mytable {
+  font-weight: bold;
+}
+.orcid img {
+  width: 3%;
+}
+.emphasis {
+  background-color: #008080;
+  color: #ffffff;
+  border: solid #0b2045 3mm;
+  margin: 1em;
+  padding-left: 0;
+  padding-right: 0;
+}
+.emphasis h1 {
+  font-weight: bold;
+  background: none;
+  background-color: #0b2045;
+  padding-bottom: 5mm;
+  padding-top: 1mm;
+  margin-top: -1mm;
+  margin-right: -1mm;
+  margin-left: -1mm;
+}
+.emphasis blockquote {
+  border: 0;
+}
+.emphasis ol {
+  padding: 0;
+  padding-left: 8%;
+  font-size: 100%;
+  font-weight: bold;
+}
+.emphasis p {
+  color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="column outer">
+<div class="section">
+
+<h3 id="author" class="author">
+
+<strong>Gihawi, A.</strong><sup> 1, <a class="orcid" href="https://orcid.org/0000-0002-3676-5561"><img src="https://raw.githubusercontent.com/brentthorne/posterdown/master/images/orcid.jpg"></a></sup><br>
+<a class="twitter" href="https://mobile.twitter.com/AbrahamGihawi"><i class="fab fa-twitter"></i>&nbsp;&nbsp;@AbrahamGihawi</a><br>
+
+<a class='envelope'><i class="fas fa-envelope"></i></a> <a href="mailto:A.Gihawi@uea.ac.uk" class="email">A.Gihawi@uea.ac.uk</a> <br>
+   </h3>
+
+<h5 id="author_extra", class="author_extra">
+ Hurst, R.<sup>1</sup>
+ Cooper, C.S.<sup>1</sup>
+ Brewer, D.S.<sup>1,2</sup>
+</h5>
+
+
+<p id="affiliation" class="affiliation">
+<sup>1</sup> Bob Champion Research and Education Building, University of East Anglia, Norwich, UK<br> <sup>2</sup> Earlham Institute, Norwich, UK
+</p>
+</div>
+
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>Prostate cancer is the most common cancer in men in the UK with more than 52,000 new diagnoses annually. We recently discovered that a subset of anaerobic bacteria appears to be associated with aggressive prostate cancer – the Anaerobic Bacterial Biomarker Set (ABBS) genera<span class="citation">[<a href="#ref-Hurst2022" role="doc-biblioref">1</a>]</span>. In this study, we explored whether these findings could be validated in the Pan-Prostate Cancer Group (PPCG, <em>N</em>=2,176), using the taxonomic classification of short non-human whole genome sequencing reads. We additionally searched for evidence of the bacterial gene <em>pks</em>, which produces genotoxic colibactin, frequently associated with <em>Escherichia</em>.</p>
+</div>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:methodsflow"></span>
+<img src="plots/flow.png" alt="SEPATH was applied to tumour whole genome sequences (WGS, _N_=2,176) from the Pan-Prostate Cancer Group. This pipeline extracts high quality reads unaligned to the human genome, runs additional human read removal and they are subject to taxonomic classification." width="100%" />
+<p class="caption">
+Figure 1: SEPATH was applied to tumour whole genome sequences (WGS, <em>N</em>=2,176) from the Pan-Prostate Cancer Group. This pipeline extracts high quality reads unaligned to the human genome, runs additional human read removal and they are subject to taxonomic classification.
+</p>
+</div>
+<p>To obtain a microbial community matrix for every sample, we applied an adaptation of the (<a href="https://github.com/UEA-Cancer-Genetics-Lab/sepath_tool_UEA">SEPATH</a> <span class="citation">[<a href="#ref-RN454" role="doc-biblioref">2</a>]</span> pipeline to whole genome sequences from the PPCG (<em>N</em>=2,176). Read counts less than 10 were set to 0 to limit false positive classifications.</p>
+<div id="survival-analysis" class="section level4">
+<h4>Survival Analysis</h4>
+<p>ABBS<span class="math inline">\(^+\)</span> samples were identified in primary tumour samples by identifying any sample with evidence for any of the genera: <em>Fenollaria</em>, <em>Ezakiella</em>, <em>Peptoniphilus</em>, <em>Porphyromonas</em>, <em>Anaerococcus</em> or <em>Fusobacterium</em>. Relapse free survival was measured from date of tumour collection and analysed using the <code>survminer</code> and <code>survival</code> R packages.</p>
+</div>
+<div id="identifying-bacterial-pks" class="section level4">
+<h4>Identifying Bacterial <em>pks</em></h4>
+<p>To search for evidence of bacterial <a href="https://www.ncbi.nlm.nih.gov/nuccore/AM229678.1"><em>pks</em></a> we aligned unmapped reads from each sample to <em>pks</em> gene (<code>bwa mem</code>). The resulting BAM files were sorted, indexed and depth reports were obtained with <code>samtools</code>.</p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>The PPCG reported 1,363 microbial genera with varying levels of evidence. Many of these genera are suspected contaminants, but there some more logical microbial genera with strong levels of evidence (fig. <a href="#fig:ppcg">2</a>).</p>
+<p><br></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ppcg"></span>
+<img src="plots/ppcgheatmap.png" alt="A heatmap demonstrating a selection of bacteria identified in the urine across the PPCG. Top bars indicate the country from which a smaple was obtained and ABBS status (purple: positive, green: negative)." width="100%" />
+<p class="caption">
+Figure 2: A heatmap demonstrating a selection of bacteria identified in the urine across the PPCG. Top bars indicate the country from which a smaple was obtained and ABBS status (purple: positive, green: negative).
+</p>
+</div>
+<p><br></p>
+<div id="abbs-is-associated-with-poor-relapse-free-survival-in-the-ppcg" class="section level4">
+<h4>ABBS is Associated with Poor Relapse Free Survival in the PPCG</h4>
+<p>We investigated the association between patients with ABBS<span class="math inline">\(^+\)</span> primary tumour samples and relapse-free survival (fig. <a href="#fig:abbssurv">3</a>). ABBS<span class="math inline">\(^+\)</span> patients demonstrated more aggressive disease in terms of relapse free survival (<span class="math inline">\(p=0.023\)</span>, log-rank test). We also repeated another finding, that ABBS<span class="math inline">\(^+\)</span> samples are often identified in older participants (<span class="math inline">\(p=5.5x10^{-11}\)</span>, Wilcoxon signed-rank test)</p>
+<p><br></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:abbssurv"></span>
+<img src="plots/abbssurv.png" alt="Survival curves demonstrating relapse free survival in ABBS positive primary tumour samples (blue, n=146) compared with ABBS negative samples (red, n=672). Relapse free survival is significantly worse in patients that demonstrated evidence for ABBS genera (p=0.023, log-rank test)." width="100%" />
+<p class="caption">
+Figure 3: Survival curves demonstrating relapse free survival in ABBS positive primary tumour samples (blue, n=146) compared with ABBS negative samples (red, n=672). Relapse free survival is significantly worse in patients that demonstrated evidence for ABBS genera (p=0.023, log-rank test).
+</p>
+</div>
+<p><br></p>
+</div>
+<div id="identifying-bacterial-pks-1" class="section level4">
+<h4>Identifying Bacterial <em>pks</em></h4>
+<p>A separate pipeline was developed to search for the genotoxic bacterial <em>pks</em> gene, which is commonly identified in <em>Escherichia</em> (fig. <a href="#fig:pksfig">4</a>). We compared the evidence for Escherichia to the total number of bases aligned to the <em>pks</em> gene which revealed four clusters:</p>
+<ul>
+<li><em>pks</em><span class="math inline">\(^+\)</span> and <em>Escherichia</em><span class="math inline">\(^+\)</span> (<em>N</em>=935)</li>
+<li><em>pks</em><span class="math inline">\(^-\)</span> and <em>Escherichia</em><span class="math inline">\(^+\)</span> (<em>N</em>=213)</li>
+<li><em>pks</em><span class="math inline">\(^+\)</span> and <em>Escherichia</em><span class="math inline">\(^-\)</span> (<em>N</em>=41)</li>
+<li><em>pks</em><span class="math inline">\(^-\)</span> and <em>Escherichia</em><span class="math inline">\(^-\)</span> (<em>N</em>=987)</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pksfig"></span>
+<img src="plots/pks.png" alt="The number of reads associated with Escherichia (x-axis) compared with the total number of bases aligned to the pks gene (y-axis) for N=2,176 whole genome sequencing samples in the PPCG cohort." width="100%" />
+<p class="caption">
+Figure 4: The number of reads associated with Escherichia (x-axis) compared with the total number of bases aligned to the pks gene (y-axis) for N=2,176 whole genome sequencing samples in the PPCG cohort.
+</p>
+</div>
+</div>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<ul>
+<li>A range of interesting microbial genera are identified in the PPCG cohort</li>
+<li>ABBS are identified in patients with aggressive prostate cancer</li>
+<li>ABBS are again identified in older participants</li>
+<li>Genotoxic <em>pks</em> is identified in 44.8% of samples</li>
+</ul>
+</div>
+<div id="future-directions" class="section level1">
+<h1>Future Directions</h1>
+<ul>
+<li>ABBS is useful at genus level, but what the picture like at species level?</li>
+<li><em>Echerichia</em> can be both a contaminant and also biologically relevant. Is there any evidence for <em>pks</em> influencing tumours?</li>
+</ul>
+<p><br></p>
+</div>
+<div id="acknowledgements" class="section level1">
+<h1>Acknowledgements</h1>
+<p>Thanks to participants, the <a href="http://panprostate.org/">PPCG</a> and to <a href="https://prostatecanceruk.org/">Prostate Cancer UK</a> for making this research possible.</p>
+<p><img src="resources/logos.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><em>Note: </em> This poster was produced in R. Details and code to reproduce this poster can be found: <a href="https://github.com/Agihawi/ncrn2023">github.com/Agihawi/ncrn2023</a></p>
+<div id="references" class="section level3 unnumbered">
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-Hurst2022" class="csl-entry">
+1. Hurst R, Meader E, Gihawi A, Rallapalli G, Clark J, Kay GL, et al. Microbiomes of urine and the prostate are linked to human prostate cancer risk groups. European Urology Oncology. 2022;5:412–9. doi:<a href="https://doi.org/10.1016/j.euo.2022.03.006">10.1016/j.euo.2022.03.006</a>.
+</div>
+<div id="ref-RN454" class="csl-entry">
+2. Gihawi A, Rallapalli G, Hurst R, Cooper CS, Leggett RM, Brewer DS. SEPATH: Benchmarking the search for pathogens in human tissue whole genome sequence data leads to template pipelines. Genome Biol. 2019;20:208. doi:<a href="https://doi.org/10.1186/s13059-019-1819-8">10.1186/s13059-019-1819-8</a>.
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="main">
+<p><strong>Investigating Microbe Associated Prostate Cancer from Short Read Whole Genome Sequences</strong></p>
+</div>
+<div class="main_bottom">
+<img id="main-img-left" src=>
+<img id="main-img-center" src=>
+<img id="main-img-right" src=resources/poster_qr.png>
+</div>
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>
